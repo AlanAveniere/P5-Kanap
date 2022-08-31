@@ -9,27 +9,27 @@ let url = (hostname + `/api/products/${productId}`);
 
 fetch(url)
 	.then(response => response.json()
-	.then((data) => {
-	//Appel des options produits (qty/img/name/description)
-	document.querySelector('.item__img').innerHTML = `<img src="${data.imageUrl}" alt="${data.altTxt}">`;
-	document.getElementById('title').innerHTML = data.name;
-	document.getElementById('price').innerHTML = data.price;
-	document.getElementById('description').innerHTML = data.description;
+		.then((data) => {
+			//Appel des options produits (qty/img/name/description)
+			document.querySelector('.item__img').innerHTML = `<img src="${data.imageUrl}" alt="${data.altTxt}">`;
+			document.getElementById('title').innerHTML = data.name;
+			document.getElementById('price').innerHTML = data.price;
+			document.getElementById('description').innerHTML = data.description;
 
-	let colorsNode = document.getElementById('colors');
-	for (let color of data.colors) {
-		let addOption = document.createElement('option');
-		addOption.text = color;
-		addOption.value = color;
-		colorsNode.add(addOption);
-	}
-}).catch((err) => console.log(err))
-);
+			let colorsNode = document.getElementById('colors');
+			for (let color of data.colors) {
+				let addOption = document.createElement('option');
+				addOption.text = color;
+				addOption.value = color;
+				colorsNode.add(addOption);
+			}
+		}).catch((err) => console.log(err))
+	);
 
 //Écoute les évènements sur la soumission du panier + enregistrement dans le localStorage
 let button = document.querySelector('#addToCart');
 
-function addToCart(id, color, qty, price){
+function addToCart(id, color, qty, price) {
 	let cart = {
 		id: id,
 		color: color,
@@ -56,7 +56,7 @@ function addToCart(id, color, qty, price){
 		newCart.push(cart)
 		localStorage.setItem('products', JSON.stringify(newCart))
 	}
-    window.alert ('Produit ajouté au panier')
+	window.alert('Produit ajouté au panier')
 }
 //Ajout au panier du choix client 
 button.addEventListener('click', function () {
