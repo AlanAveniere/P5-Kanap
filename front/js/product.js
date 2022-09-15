@@ -29,7 +29,7 @@ fetch(url)
 //Écoute les évènements sur la soumission du panier + enregistrement dans le localStorage
 let button = document.querySelector('#addToCart');
 
-function addToCart(id, color, qty, price) {
+function addToCart(id, color, qty) {
 	let cart = {
 		id: id,
 		color: color,
@@ -62,6 +62,5 @@ function addToCart(id, color, qty, price) {
 button.addEventListener('click', function () {
 	let color = document.getElementById('colors');
 	let qty = document.getElementById('quantity');
-	let price = document.getElementById('price')
-	addToCart(productId, color.options[color.selectedIndex].value, qty.value, price.innerText);
+	addToCart(productId, color.options[color.selectedIndex].value, qty.value);
 })

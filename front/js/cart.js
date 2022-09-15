@@ -43,24 +43,8 @@ function removeCartItem(id, color) {
 	location.reload();
 }
 
-//Pour mettre a jour le prix et la quantité total
-function updateCartTotal() {
-	let newQty = 0;
-	let newTotal = 0;
-	let cartItems = JSON.parse(localStorage.getItem('products'));
-
-	for (let product of cartItems) { //Boucle pour recuperer la clr, donc voir cb le client en a prit
-		if (product) {
-			newTotal += parseInt(product.price) * parseInt(product.qty);
-			newQty += parseInt(product.qty);
-			document.getElementById('totalPrice').innerHTML = newTotal;
-			document.getElementById('totalQuantity').innerHTML = newQty;
-		}
-	}
-}
-
-
 // Parcourir les options / ID stocker dans le localStorage
+function main() {
 if (cartItems !== null) {
 	for (let i = 0; i < cartItems.length; i++) {
 		let product = cartItems[i];
@@ -125,12 +109,13 @@ if (cartItems !== null) {
 						let id = article.dataset.id;
 						let color = article.dataset.color;
 						removeCartItem(id, color);
-						updateCartTotal();
 					});
 				}
 			}).catch((err) => console.log(err));
 	}
 }
+}
+main();
 
 let firstName = document.querySelector('#firstName');
 let lastName = document.querySelector('#lastName');
